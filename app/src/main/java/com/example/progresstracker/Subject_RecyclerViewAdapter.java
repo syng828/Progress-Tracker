@@ -1,7 +1,6 @@
 package com.example.progresstracker;
 
 import android.content.Context;
-import android.text.Layout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,46 +11,43 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 
-public class Start_RecyclerViewAdapter extends RecyclerView.Adapter<Start_RecyclerViewAdapter.MyViewHolder> {
+public class Subject_RecyclerViewAdapter extends RecyclerView.Adapter<Subject_RecyclerViewAdapter.MyViewHolder>{
     private final RecyclerViewInterface recyclerViewInterface;
     Context context;
-    ArrayList<Subject> subjects;
+    ArrayList<Topic> topics;
 
-    public Start_RecyclerViewAdapter(Context context, ArrayList<Subject> subjects, RecyclerViewInterface recyclerViewInterface){
+    public Subject_RecyclerViewAdapter(Context context, ArrayList<Topic>topics, RecyclerViewInterface recyclerViewInterface) {
         this.context = context;
+        this.topics = topics;
         this.recyclerViewInterface = recyclerViewInterface;
-        this.subjects = subjects;
     }
-
 
     @NonNull
-    @Override  //Starts the viewholder
-    public Start_RecyclerViewAdapter.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    @Override
+    public Subject_RecyclerViewAdapter.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(context);
-        View view = inflater.inflate(R.layout.start_recycler_view_row, parent, false);
+        View view = inflater.inflate(R.layout.subject_recycler_view_row, parent, false);
 
-        return new Start_RecyclerViewAdapter.MyViewHolder(view, recyclerViewInterface);
+        return new Subject_RecyclerViewAdapter.MyViewHolder(view, recyclerViewInterface);
     }
 
-    @Override  //When its scrolling
-    public void onBindViewHolder(@NonNull Start_RecyclerViewAdapter.MyViewHolder holder, int position) {
-        holder.textView.setText(subjects.get(position).getName());
-
+    @Override
+    public void onBindViewHolder(@NonNull Subject_RecyclerViewAdapter.MyViewHolder holder, int position) {
+        holder.textView.setText(topics.get(position).getName());
     }
 
     @Override
     public int getItemCount() {
-        return subjects.size();
+        return topics.size();
     }
-//basically the layout
-    public static class MyViewHolder extends RecyclerView.ViewHolder {
 
+    public static class MyViewHolder extends RecyclerView.ViewHolder{
         TextView textView;
 
         public MyViewHolder(@NonNull View itemView, RecyclerViewInterface recyclerViewInterface) {
             super(itemView);
 
-            textView = itemView.findViewById(R.id.subjectTextView);
+            textView = itemView.findViewById(R.id.topicTextView);
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override

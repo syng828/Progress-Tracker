@@ -1,41 +1,101 @@
 package com.example.progresstracker;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 
-//TODO: Don't know why there's an issue here but will fix next time create recycler view for this class.
-public class SubjectActivity extends AppCompatActivity {
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
-    Button btnBack;
-    TextView textView;
+import java.util.ArrayList;
+
+public class SubjectActivity extends AppCompatActivity implements RecyclerViewInterface, View.OnClickListener {
+
+    protected static final String TOPIC_KEY = "Topic";
+
+    ArrayList<Topic> topics = new ArrayList<>();
+    Subject_RecyclerViewAdapter adapter;
+
+    Subject subject;
+    FloatingActionButton addTopic;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_subject);
 
-        TextView textView = findViewById(R.id.subjectText);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true); //sets up back button
 
-        btnBack = findViewById(R.id.btnBack);
+        addTopic = findViewById(R.id.addTopicBtn);
+        addTopic.setOnClickListener(this);
 
-        Subject subject = (Subject) getIntent().getSerializableExtra("SUBJECT_KEY");
-        String subjectName = subject.getName();
+        //retrieves information from startActivity
+        subject = (Subject) getIntent().getSerializableExtra(StartActivity.SUBJECT_KEY);
+        setTitle(subject.getName());
 
-        textView.setText(subjectName);
+        RecyclerView recyclerView = findViewById(R.id.subjectRecyclerView);
 
-        //Just goes back for now, but will make it so that it can have it be updated back
-        btnBack.setOnClickListener(new View.OnClickListener() {
+        setUpSubjectModels();
+
+        adapter = new Subject_RecyclerViewAdapter(this, topics, this);
+         recyclerView.setAdapter(adapter);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+    }
+
+        private void setUpSubjectModels() {
+              topics = subject.getArrayList();
+        }
+
+    @Override
+    public void onClick(View v) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Enter subject name");
+        final EditText input = new EditText(this);
+        builder.setView(input);
+
+        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(SubjectActivity.this, StartActivity.class);
-                startActivity(intent);
+            public void onClick(DialogInterface dialog, int which) {
+                String topicName = input.getText().toString();
+                topics.add(new Topic(topicName));
             }
         });
+        builder.show();
     }
-}
+
+    @Override
+    public void onItemClick(int position) {
+        Intent intent = new Intent(this, SubjectActivity.class);
+        intent.putExtra(TOPIC_KEY, topics.get(position));
+        startActivity(intent);
+    }
+
+    @Override
+    public void onLongItemClick(int position) {
+        topics.remove(position);
+        adapter.notifyItemRemoved(position);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) { //goes back to prev activity
+        switch(item.getItemId()) {
+            case android.R.id.home:
+                Intent intent = new Intent(this, MainActivity.class);
+                intent.putExtra("Back", subject);
+                setResult(10, intent);
+
+                finish();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+
+    }

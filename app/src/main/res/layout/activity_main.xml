@@ -32,6 +32,8 @@
         android:layout_height="wrap_content"
         android:fontFamily="@font/roboto_slab"
         android:text="Progress Tracker"
+        android:textSize="20dp"
+        android:textColor="@color/black"
         app:layout_constraintBottom_toTopOf="@+id/btnopenSave"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

@@ -13,29 +13,25 @@
         android:theme="@style/Theme.ProgressTracker"
         tools:targetApi="31">
         <activity
-            android:name=".QuestionActivity"
-            android:exported="false">
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity>
-        <activity
             android:name=".TopicActivity"
-            android:exported="false">
+            android:exported="false"
+            android:parentActivityName=".SubjectActivity">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
             android:name=".SubjectActivity"
-            android:exported="false">
+            android:exported="false"
+            android:parentActivityName=".StartActivity">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
             android:name=".StartActivity"
-            android:exported="false">
+            android:exported="false"
+            android:parentActivityName=".MainActivity">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />

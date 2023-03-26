@@ -1,8 +1,14 @@
 package com.example.progresstracker;
 
+import androidx.activity.result.ActivityResult;
+import androidx.activity.result.ActivityResultCallback;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.AlertDialog;
+import android.content.Context;
+import android.content.ContextWrapper;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -12,6 +18,8 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.io.EOFException;
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -26,8 +34,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     Button btnCreate;
     Button btnTesting;  //@TEST
 
-    private String inputText = "";
     final static public String START_KEY = "Starting";
+    final static public String FILE_NAME_KEY = "FileName";
+
+    Start updatedStart;
+    String inputText;
 
 
     @Override
@@ -36,7 +47,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.activity_main);
 
         title = findViewById(R.id.txtTitle);
-
         btnOpenSave = findViewById(R.id.btnopenSave);
         btnOpenSave.setOnClickListener(this);
         btnCreate = findViewById(R.id.btnCreate);
@@ -72,23 +82,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 switch (view.getId()) {
                     case (R.id.btnopenSave):
                         try {
-                            FileInputStream fis = openFileInput(inputText + ".txt");
+                            FileInputStream fis = openFileInput(inputText + ".ser");
                             ObjectInputStream objectIn = new ObjectInputStream(fis);
-                            Start read = (Start) objectIn.readObject();
 
-                            objectIn.close();
-                            //TODO then open the window, pass the data back to overwrite it
+                            Start read = (Start) objectIn.readObject();
 
                             Intent intent = new Intent(MainActivity.this, StartActivity.class);
                             intent.putExtra(START_KEY, read);
+                            intent.putExtra(FILE_NAME_KEY, inputText);
                             startActivity(intent);
-
-                            FileOutputStream fos = openFileOutput(inputText+ ".txt", MODE_PRIVATE); //Rewrites the file
-                            ObjectOutputStream objectOut = new ObjectOutputStream(fos);
-
-                            objectOut.writeObject(read);
-                            objectOut.close();
-                            Toast.makeText(MainActivity.this, "File Overwritten.", Toast.LENGTH_LONG).show();
+                            fis.close();
 
                         } catch (IOException | ClassNotFoundException e) {
                             Toast.makeText(MainActivity.this, "Cannot find the file.", Toast.LENGTH_LONG).show();
@@ -97,23 +100,20 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
                     case (R.id.btnCreate):
                         try {
-                            FileOutputStream fos = openFileOutput(inputText + ".txt", MODE_PRIVATE);
-                            ObjectOutputStream oos = new ObjectOutputStream(fos);
+                            FileOutputStream fos = openFileOutput(inputText + ".ser", MODE_PRIVATE);
+                            ObjectOutputStream objectOut = new ObjectOutputStream(fos);
+
                             Start read = new Start();
-                            //TODO Then move to the start page
+                            objectOut.writeObject(read);
+
                             Intent intent2 = new Intent(MainActivity.this, StartActivity.class);
                             intent2.putExtra(START_KEY, read);
+                            intent2.putExtra(FILE_NAME_KEY, inputText);
                             startActivity(intent2);
-                            //TODO Then retrieve info
-
-
-                            oos.writeObject(read);
-                            Toast.makeText(MainActivity.this, "Successfully written into a file to" + getFilesDir(), Toast.LENGTH_LONG).show();
-
                             fos.close();
-
-                        } catch (IOException e) {
-                            Toast.makeText(MainActivity.this, e.getMessage(), Toast.LENGTH_LONG).show();
+                        }
+                        catch (IOException e) {
+                            Toast.makeText(MainActivity.this, "Cannot create the file.", Toast.LENGTH_LONG).show();
                         }
                         break;
                 }
@@ -121,8 +121,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             }
         });
         builder.show();
-
-
         }
+
     }
 
