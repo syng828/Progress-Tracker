@@ -1,5 +1,9 @@
 package com.example.progresstracker;
 
+import androidx.activity.result.ActivityResult;
+import androidx.activity.result.ActivityResultCallback;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -21,10 +25,29 @@ public class SubjectActivity extends AppCompatActivity implements RecyclerViewIn
     protected static final String TOPIC_KEY = "Topic";
 
     ArrayList<Topic> topics = new ArrayList<>();
-    Subject_RecyclerViewAdapter adapter;
-
     Subject subject;
+    Topic updatedTopic;
+    int toReplacePosition;
+
+    Subject_RecyclerViewAdapter adapter;
     FloatingActionButton addTopic;
+
+    ActivityResultLauncher<Intent> activityLauncher = registerForActivityResult(
+            new ActivityResultContracts.StartActivityForResult(),
+            new ActivityResultCallback<ActivityResult>() {
+                @Override
+                public void onActivityResult(ActivityResult result) {
+                    if (result.getResultCode() == 20) {
+                        Intent intent = result.getData();
+
+                        if (intent != null) {
+                            updatedTopic = (Topic)intent.getSerializableExtra("BackTopic");
+                            topics.set(toReplacePosition, updatedTopic); //replaces info in previously clicked value
+                        }
+                    }
+                }
+            }
+    );
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,9 +95,10 @@ public class SubjectActivity extends AppCompatActivity implements RecyclerViewIn
 
     @Override
     public void onItemClick(int position) {
-        Intent intent = new Intent(this, SubjectActivity.class);
+        toReplacePosition = position;
+        Intent intent = new Intent(this, TopicActivity.class);
         intent.putExtra(TOPIC_KEY, topics.get(position));
-        startActivity(intent);
+        activityLauncher.launch(intent);
     }
 
     @Override
@@ -87,7 +111,7 @@ public class SubjectActivity extends AppCompatActivity implements RecyclerViewIn
     public boolean onOptionsItemSelected(MenuItem item) { //goes back to prev activity
         switch(item.getItemId()) {
             case android.R.id.home:
-                Intent intent = new Intent(this, MainActivity.class);
+                Intent intent = new Intent(this, StartActivity.class);
                 intent.putExtra("Back", subject);
                 setResult(10, intent);
 

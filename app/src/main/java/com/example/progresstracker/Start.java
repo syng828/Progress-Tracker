@@ -14,21 +14,8 @@ public class Start extends ActivitySimilarities {
         System.out.println("Subject added.");
     }
 
-
-
-    public Subject getInstance(int i) {
-        return subj.get(i);
-    }
-
     public ArrayList<Subject> getArrayList() {
         return subj;
     }
 
-    public String getArrayListNames() {
-        String toBeReturned = "";
-        for (Subject s : subj) {
-            toBeReturned = toBeReturned + "  " + s.getName();
-        }
-        return toBeReturned;
-    }
 }

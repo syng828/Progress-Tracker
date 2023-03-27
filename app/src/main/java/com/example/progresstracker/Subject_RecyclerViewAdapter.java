@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -34,6 +35,7 @@ public class Subject_RecyclerViewAdapter extends RecyclerView.Adapter<Subject_Re
     @Override
     public void onBindViewHolder(@NonNull Subject_RecyclerViewAdapter.MyViewHolder holder, int position) {
         holder.textView.setText(topics.get(position).getName());
+        holder.progressBar.setProgress(topics.get(position).getProgress());
     }
 
     @Override
@@ -43,11 +45,13 @@ public class Subject_RecyclerViewAdapter extends RecyclerView.Adapter<Subject_Re
 
     public static class MyViewHolder extends RecyclerView.ViewHolder{
         TextView textView;
+        ProgressBar progressBar;
 
         public MyViewHolder(@NonNull View itemView, RecyclerViewInterface recyclerViewInterface) {
             super(itemView);
 
             textView = itemView.findViewById(R.id.topicTextView);
+            progressBar = itemView.findViewById(R.id.progressBar);
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override

@@ -26,12 +26,4 @@ public class Subject extends ActivitySimilarities {
             System.out.println("Added.");
         }
 
-        public String getArrayListNames() {
-            String toBeReturned = "";
-            for (Topic t : topic ) {
-                toBeReturned = toBeReturned + "  " + t.getName();
-            }
-            return toBeReturned;
-        }
-
 }

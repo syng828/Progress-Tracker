@@ -59,7 +59,7 @@ public class StartActivity extends AppCompatActivity implements RecyclerViewInte
 
                         if (intent != null) {
                             updatedSubject = (Subject)intent.getSerializableExtra("Back");
-                                subjects.set(toReplacePosition, updatedSubject); //replaces info in previously clicked value
+                            subjects.set(toReplacePosition, updatedSubject); //replaces info in previously clicked value
                         }
                     }
                 }
@@ -150,10 +150,6 @@ public class StartActivity extends AppCompatActivity implements RecyclerViewInte
     public boolean onOptionsItemSelected(MenuItem item) { //goes back to prev activity
         switch(item.getItemId()) {
             case android.R.id.home:
-                Intent intent = new Intent(this, MainActivity.class);
-                intent.putExtra("BackToStart", start);
-                setResult(5, intent);
-
                 finish();
                 return true;
             default:

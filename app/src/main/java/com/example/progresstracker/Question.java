@@ -3,13 +3,22 @@ package com.example.progresstracker;
 import java.io.Serializable;
 
 public class Question implements Serializable{ //Singular question
-    private String question;
-    private String answer;
+    private final String question;
+    private final String answer;
     private boolean correct = false;
+    private boolean expandable;
 
     public Question (String question, String answer) {
         this.question = question;
         this.answer = answer;
+        this.expandable = false;
+    }
+
+    public boolean isExpandable() {
+        return expandable;
+    }
+    public void setExpanded(boolean expandable) {
+        this.expandable = expandable;
     }
     public String getQuestion() {
         return question;
@@ -19,28 +28,29 @@ public class Question implements Serializable{ //Singular question
         return answer;
     }
 
-    public void setAnswer(String answer) {
-        System.out.println("Please enter the new answer.");
-        this.answer = answer;
-        System.out.println("Answer set.");
+
+    public boolean isCorrect(){
+        return correct;
     }
 
-    public boolean getCorrect() {
-        return correct;
+    public String getCorrectString() {
+        if(correct)
+            return "Correct";
+        else
+            return "Incorrect";
     }
 
     //check if correct
     public void check(String guess) {
-        System.out.println("Please enter your guess.");
         if (guess.equals(answer)) {
-            correct = true;
-            System.out.println("Correct!");
+            this.correct = true;
         }
         else {
-            correct = false;
-            System.out.println("Wrong!");
+            this.correct = false;
         }
     }
+
+
 
 }
 

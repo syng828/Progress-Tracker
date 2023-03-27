@@ -56,6 +56,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         Start test = new Start();
         test.addInArrayList("Math");
         test.addInArrayList("Science");
+        test.getArrayList().get(0).addInArrayList("Exponents");
+        test.getArrayList().get(0).getArrayList().get(0).addInArrayList("Hello there", "Answer");
         btnTesting.setOnClickListener(new View.OnClickListener() {   //@TEST
             @Override
             public void onClick(View v) {
