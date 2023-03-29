@@ -9,6 +9,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.InputFilter;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
@@ -63,10 +64,12 @@ public class TopicActivity extends AppCompatActivity implements TRecyclerViewInt
 
         final EditText inputQuestion = new EditText(context);
         inputQuestion.setHint("Question");
+        inputQuestion.setFilters(new InputFilter[] {new InputFilter.LengthFilter(150)});
         layout.addView(inputQuestion);
 
         final EditText inputAnswer = new EditText(context);
         inputAnswer.setHint("Answer");
+        inputAnswer.setFilters(new InputFilter[] {new InputFilter.LengthFilter(20)});
         layout.addView(inputAnswer);
 
         AlertDialog.Builder builder = new AlertDialog.Builder(this);

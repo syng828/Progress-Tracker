@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.InputFilter;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
@@ -81,8 +82,9 @@ public class SubjectActivity extends AppCompatActivity implements RecyclerViewIn
     @Override
     public void onClick(View v) {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("Enter subject name");
+        builder.setTitle("Enter topic name");
         final EditText input = new EditText(this);
+        input.setFilters(new InputFilter[] {new InputFilter.LengthFilter(20)});
         builder.setView(input);
 
         builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {

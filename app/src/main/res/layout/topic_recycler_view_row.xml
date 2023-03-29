@@ -7,7 +7,7 @@
 
 
     <androidx.cardview.widget.CardView
-        android:layout_width="409dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="15dp"
         app:cardBackgroundColor="@color/teal_200"
@@ -90,7 +90,7 @@
                 android:id="@+id/question"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="What is a question that is a question?"
+                android:textSize="15sp"
                 android:textColor="@color/white"
 
                 android:textStyle="bold"
