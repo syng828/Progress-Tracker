@@ -10,9 +10,9 @@
         android:id="@+id/btnopenSave"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="10dp"
         android:text="Open Saved File"
-        app:layout_constraintBottom_toTopOf="@+id/btnCreate"
+        android:layout_marginBottom="15dp"
+        app:layout_constraintBottom_toTopOf="@+id/deleteSave"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
@@ -20,11 +20,11 @@
         android:id="@+id/btnCreate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Create New Save FIle"
-        android:layout_marginBottom="10dp"
-        app:layout_constraintBottom_toTopOf="@+id/deleteSave"
+        android:text="Create New Save"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginBottom="120dp"/>
 
     <TextView
         android:id="@+id/txtTitle"
@@ -45,7 +45,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="TESTING"
-        android:layout_marginBottom="35dp"
+        android:layout_marginBottom="50dp"
         app:layout_constraintBottom_toTopOf="@+id/btnopenSave"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
@@ -65,9 +65,9 @@
         android:id="@+id/deleteSave"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="100dp"
         android:text="Delete Saved File"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginBottom="15dp"
+        app:layout_constraintBottom_toTopOf="@+id/btnCreate"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
