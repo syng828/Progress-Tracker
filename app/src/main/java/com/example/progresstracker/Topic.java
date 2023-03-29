@@ -15,16 +15,14 @@ public class Topic extends ActivitySimilarities {
 
 
     //Editing arrayList of type Question
-
     public void addInArrayList(String q, String answer) {
         Question newQuestion = new Question(q, answer);
         questions.add(newQuestion);
-        System.out.println("Added.");
     }
 
-    //Checks progress
+    //Checks progress based on #of correct answers from all questions
     public int getProgress (){
-        int correct = 0;
+        double correct = 0.0;
         if (questions == null || questions.size() == 0) {
             progress = 0;
         }
@@ -35,9 +33,10 @@ public class Topic extends ActivitySimilarities {
                     correct++;
                 }
             }
-            progress = (correct / total * 100);
+            progress = (int) ((correct / total) * 100);
         }
         return progress;
+
     }
 
 }

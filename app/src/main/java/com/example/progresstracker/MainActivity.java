@@ -21,6 +21,7 @@ import android.widget.Toast;
 import java.io.EOFException;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -30,9 +31,8 @@ import java.io.Serializable;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener, Serializable {
     TextView title;
-    Button btnOpenSave;
-    Button btnCreate;
-    Button btnTesting;  //@TEST
+    Button btnOpenSave, btnCreate, btnDeleteSave;
+    Button btnTesting;
 
     final static public String START_KEY = "Starting";
     final static public String FILE_NAME_KEY = "FileName";
@@ -49,10 +49,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         title = findViewById(R.id.txtTitle);
         btnOpenSave = findViewById(R.id.btnopenSave);
         btnOpenSave.setOnClickListener(this);
+        btnDeleteSave = findViewById(R.id.deleteSave);
+        btnDeleteSave.setOnClickListener(this);
         btnCreate = findViewById(R.id.btnCreate);
         btnCreate.setOnClickListener(this);
-        btnTesting = findViewById(R.id.testBtn); //@TEST
+        btnTesting = findViewById(R.id.testBtn);
 
+        //TEST VALUES TO MOVE AROUND THE APP
         Start test = new Start();
         test.addInArrayList("Math");
         test.addInArrayList("Science");
@@ -118,12 +121,18 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                             Toast.makeText(MainActivity.this, "Cannot create the file.", Toast.LENGTH_LONG).show();
                         }
                         break;
+
+                    case (R.id.deleteSave):
+                            File delete = new File(getFilesDir(), inputText + ".ser");
+                            if (delete.delete())
+                                Toast.makeText(MainActivity.this, "File deleted", Toast.LENGTH_LONG).show();
+                            else
+                                Toast.makeText(MainActivity.this, "Unable to delete the file", Toast.LENGTH_LONG).show();
+
                 }
 
             }
         });
         builder.show();
-        }
-
     }
-
+}

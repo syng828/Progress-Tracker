@@ -48,7 +48,7 @@ public class StartActivity extends AppCompatActivity implements RecyclerViewInte
 
     int toReplacePosition;
 
-    //allows to return back with updated value
+    //returns with updated values from subject activity
     ActivityResultLauncher<Intent> activityLauncher = registerForActivityResult(
             new ActivityResultContracts.StartActivityForResult(),
             new ActivityResultCallback<ActivityResult>() {
@@ -116,7 +116,6 @@ public class StartActivity extends AppCompatActivity implements RecyclerViewInte
             builder.show();
         }
         if (v.getId() == R.id.saveBtn) {     //SAVES TO THE FILE
-            Toast.makeText(this, "Button works", Toast.LENGTH_LONG).show();
             try {
                 FileOutputStream fos = openFileOutput(fileName+ ".ser", MODE_PRIVATE);
                 ObjectOutputStream oos = new ObjectOutputStream(fos);
@@ -147,7 +146,7 @@ public class StartActivity extends AppCompatActivity implements RecyclerViewInte
    }
 
    @Override
-    public boolean onOptionsItemSelected(MenuItem item) { //goes back to prev activity
+    public boolean onOptionsItemSelected(MenuItem item) { //goes back to prev activity (MainActivity)
         switch(item.getItemId()) {
             case android.R.id.home:
                 finish();

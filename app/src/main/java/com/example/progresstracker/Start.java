@@ -9,9 +9,7 @@ public class Start extends ActivitySimilarities {
 
 
     public void addInArrayList(String name) {
-        System.out.println("Enter a subject name: ");
         subj.add(new Subject(name));
-        System.out.println("Subject added.");
     }
 
     public ArrayList<Subject> getArrayList() {

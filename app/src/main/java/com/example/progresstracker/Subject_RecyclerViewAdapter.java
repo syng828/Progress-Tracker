@@ -35,7 +35,7 @@ public class Subject_RecyclerViewAdapter extends RecyclerView.Adapter<Subject_Re
     @Override
     public void onBindViewHolder(@NonNull Subject_RecyclerViewAdapter.MyViewHolder holder, int position) {
         holder.textView.setText(topics.get(position).getName());
-        holder.progressBar.setProgress(topics.get(position).getProgress());
+        holder.progressBar.setProgress(topics.get(position).getProgress()); //updated progress from questions
     }
 
     @Override

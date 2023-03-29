@@ -72,6 +72,13 @@
                 android:textColor="#FF1100"
                 android:layout_alignParentEnd="true"/>
 
+            <ImageView
+                android:id="@+id/checkMark"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd = "true"
+                android:src="@drawable/ic_baseline_unchecked"/>
+
         </RelativeLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout

@@ -17,6 +17,7 @@ public class Start_RecyclerViewAdapter extends RecyclerView.Adapter<Start_Recycl
     Context context;
     ArrayList<Subject> subjects;
 
+    //constructor
     public Start_RecyclerViewAdapter(Context context, ArrayList<Subject> subjects, RecyclerViewInterface recyclerViewInterface){
         this.context = context;
         this.recyclerViewInterface = recyclerViewInterface;
@@ -25,10 +26,10 @@ public class Start_RecyclerViewAdapter extends RecyclerView.Adapter<Start_Recycl
 
 
     @NonNull
-    @Override  //Starts the viewholder
+    @Override  //inflates the viewholder
     public Start_RecyclerViewAdapter.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(context);
-        View view = inflater.inflate(R.layout.start_recycler_view_row, parent, false);
+        View view = inflater.inflate(R.layout.start_recycler_view_row, parent, false); //gets view from xml row file
 
         return new Start_RecyclerViewAdapter.MyViewHolder(view, recyclerViewInterface);
     }
@@ -43,6 +44,7 @@ public class Start_RecyclerViewAdapter extends RecyclerView.Adapter<Start_Recycl
     public int getItemCount() {
         return subjects.size();
     }
+
 //basically the layout
     public static class MyViewHolder extends RecyclerView.ViewHolder {
 
@@ -56,7 +58,7 @@ public class Start_RecyclerViewAdapter extends RecyclerView.Adapter<Start_Recycl
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    if (recyclerViewInterface!= null) {
+                    if (recyclerViewInterface!= null) {   //passes the position to the activity, and makes use of interface
                         int pos = getAdapterPosition();
 
                         if (pos!=RecyclerView.NO_POSITION) {

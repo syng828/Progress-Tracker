@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
@@ -43,6 +44,7 @@ public class SubjectActivity extends AppCompatActivity implements RecyclerViewIn
                         if (intent != null) {
                             updatedTopic = (Topic)intent.getSerializableExtra("BackTopic");
                             topics.set(toReplacePosition, updatedTopic); //replaces info in previously clicked value
+                            adapter.notifyItemChanged(toReplacePosition);
                         }
                     }
                 }
@@ -93,7 +95,7 @@ public class SubjectActivity extends AppCompatActivity implements RecyclerViewIn
         builder.show();
     }
 
-    @Override
+    @Override //goes into TopicActivity
     public void onItemClick(int position) {
         toReplacePosition = position;
         Intent intent = new Intent(this, TopicActivity.class);
@@ -101,13 +103,13 @@ public class SubjectActivity extends AppCompatActivity implements RecyclerViewIn
         activityLauncher.launch(intent);
     }
 
-    @Override
+    @Override //removes a row
     public void onLongItemClick(int position) {
         topics.remove(position);
         adapter.notifyItemRemoved(position);
     }
 
-    @Override
+    @Override //goes back to prev activity
     public boolean onOptionsItemSelected(MenuItem item) { //goes back to prev activity
         switch(item.getItemId()) {
             case android.R.id.home:

@@ -5,12 +5,14 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
@@ -52,23 +54,35 @@ public class TopicActivity extends AppCompatActivity implements TRecyclerViewInt
 
     @Override
 
-    //TODO: Unfortunately don't know how to get two alertdialogs, like i say you can do one after the other but show doesn't work
     public void onClick(View v) {
 
+        //creates a layout of the alert message
+        Context context = v.getContext();
+        LinearLayout layout = new LinearLayout(context);
+        layout.setOrientation(LinearLayout.VERTICAL);
+
+        final EditText inputQuestion = new EditText(context);
+        inputQuestion.setHint("Question");
+        layout.addView(inputQuestion);
+
+        final EditText inputAnswer = new EditText(context);
+        inputAnswer.setHint("Answer");
+        layout.addView(inputAnswer);
+
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("Enter your question");
-        final EditText inputQuestion = new EditText(this);
-        final EditText inputAnswer = new EditText(this);
-        builder.setView(inputQuestion);
+        builder.setView(layout);
+        builder.setTitle("Enter your question and answer");
 
         builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which){
                 String q = inputQuestion.getText().toString();
+                String a = inputAnswer.getText().toString();
+                questions.add(new Question(q,a));
+                adapter.notifyDataSetChanged();
             }
         });
         builder.show();
-
     }
 
     @Override //removing
@@ -91,6 +105,8 @@ public class TopicActivity extends AppCompatActivity implements TRecyclerViewInt
                 return super.onOptionsItemSelected(item);
         }
     }
+
+
 
 
 }
