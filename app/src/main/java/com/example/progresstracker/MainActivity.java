@@ -31,15 +31,13 @@ import java.io.Serializable;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener, Serializable {
     TextView title;
-    Button btnOpenSave, btnCreate, btnDeleteSave;
-    Button btnTesting;
+    Button btnOpenSave, btnCreate, btnDeleteSave, btnGetAllNames;
 
     final static public String START_KEY = "Starting";
     final static public String FILE_NAME_KEY = "FileName";
 
     Start updatedStart;
     String inputText;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,20 +51,23 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         btnDeleteSave.setOnClickListener(this);
         btnCreate = findViewById(R.id.btnCreate);
         btnCreate.setOnClickListener(this);
-        btnTesting = findViewById(R.id.testBtn);
+        btnGetAllNames = findViewById(R.id.getAllNames);
 
-        //TEST VALUES TO MOVE AROUND THE APP
-        Start test = new Start();
-        test.addInArrayList("Math");
-        test.addInArrayList("Science");
-        test.getArrayList().get(0).addInArrayList("Exponents");
-        test.getArrayList().get(0).getArrayList().get(0).addInArrayList("Hello there. How are you doing today?", "Good");
-        btnTesting.setOnClickListener(new View.OnClickListener() {   //@TEST
+        btnGetAllNames.setOnClickListener (new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intentTest = new Intent(MainActivity.this, StartActivity.class) ;
-                intentTest.putExtra(START_KEY, test);
-                startActivity(intentTest);
+                String displayText = "";
+                File internalStorage = new File(getFilesDir().getAbsolutePath());
+                File [] files = internalStorage.listFiles();
+                for (File allFiles: files) {
+                    displayText+= "       " + allFiles.getName() + "\n";
+                }
+                AlertDialog.Builder builder = new AlertDialog.Builder(v.getContext());
+                builder.setTitle("Saves:");
+                final TextView names = new TextView(v.getContext());
+                names.setText(displayText);
+                builder.setView(names);
+                builder.show();
             }
         });
     }

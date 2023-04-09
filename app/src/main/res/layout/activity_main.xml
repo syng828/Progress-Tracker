@@ -10,7 +10,7 @@
         android:id="@+id/btnopenSave"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Open Saved File"
+        android:text="open File"
         android:layout_marginBottom="15dp"
         app:layout_constraintBottom_toTopOf="@+id/deleteSave"
         app:layout_constraintEnd_toEndOf="parent"
@@ -20,11 +20,11 @@
         android:id="@+id/btnCreate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Create New Save"
+        android:layout_marginBottom="240dp"
+        android:text="create new file"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginBottom="120dp"/>
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/txtTitle"
@@ -40,21 +40,11 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.28" />
 
-    <Button
-        android:id="@+id/testBtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="TESTING"
-        android:layout_marginBottom="50dp"
-        app:layout_constraintBottom_toTopOf="@+id/btnopenSave"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintBottom_toTopOf="@+id/testBtn"
+        android:layout_marginTop="44dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
@@ -65,10 +55,20 @@
         android:id="@+id/deleteSave"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Delete Saved File"
+        android:text="Delete File"
         android:layout_marginBottom="15dp"
         app:layout_constraintBottom_toTopOf="@+id/btnCreate"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/getAllNames"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Get all files"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnCreate" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
