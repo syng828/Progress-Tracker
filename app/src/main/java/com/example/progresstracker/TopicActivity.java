@@ -64,7 +64,7 @@ public class TopicActivity extends AppCompatActivity implements TRecyclerViewInt
 
         final EditText inputQuestion = new EditText(context);
         inputQuestion.setHint("Question");
-        inputQuestion.setFilters(new InputFilter[] {new InputFilter.LengthFilter(150)});
+        inputQuestion.setFilters(new InputFilter[] {new InputFilter.LengthFilter(100)});
         layout.addView(inputQuestion);
 
         final EditText inputAnswer = new EditText(context);
