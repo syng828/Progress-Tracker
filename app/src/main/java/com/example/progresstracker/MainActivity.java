@@ -60,6 +60,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 File internalStorage = new File(getFilesDir().getAbsolutePath());
                 File [] files = internalStorage.listFiles();
                 for (File allFiles: files) {
+                    if(allFiles.getName().endsWith(".ser"))
                     displayText+= "       " + allFiles.getName() + "\n";
                 }
                 AlertDialog.Builder builder = new AlertDialog.Builder(v.getContext());
