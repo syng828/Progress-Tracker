@@ -90,8 +90,22 @@ public class TopicActivity extends AppCompatActivity implements TRecyclerViewInt
 
     @Override //removing
     public void onLongItemClick(int position) {
-        questions.remove(position);
-        adapter.notifyItemRemoved(position);
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Do you want to remove " + questions.get(position).getQuestion()+ "?" );
+        builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                questions.remove(position);
+                adapter.notifyItemRemoved(position);
+            }
+        });
+        builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+            }
+        });
+        builder.show();
     }
 
     @Override

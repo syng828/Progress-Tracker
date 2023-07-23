@@ -2,5 +2,4 @@
     <string name="app_name">Progress Tracker</string>
     <string name = "check_answer">Check</string>
     <string name="get_answer">Get Answer</string>
-
 </resources>

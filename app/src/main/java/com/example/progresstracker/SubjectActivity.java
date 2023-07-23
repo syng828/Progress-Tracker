@@ -107,8 +107,22 @@ public class SubjectActivity extends AppCompatActivity implements RecyclerViewIn
 
     @Override //removes a row
     public void onLongItemClick(int position) {
-        topics.remove(position);
-        adapter.notifyItemRemoved(position);
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Do you want to remove " + topics.get(position).getName()+ "?" );
+        builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                topics.remove(position);
+                adapter.notifyItemRemoved(position);
+            }
+        });
+        builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+            }
+        });
+        builder.show();
     }
 
     @Override //goes back to prev activity

@@ -1,14 +1,7 @@
 package com.example.progresstracker;
-
-import androidx.activity.result.ActivityResult;
-import androidx.activity.result.ActivityResultCallback;
-import androidx.activity.result.ActivityResultLauncher;
-import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.AlertDialog;
-import android.content.Context;
-import android.content.ContextWrapper;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -18,10 +11,8 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.io.EOFException;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -36,13 +27,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     final static public String START_KEY = "Starting";
     final static public String FILE_NAME_KEY = "FileName";
 
-    Start updatedStart;
     String inputText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        getSupportActionBar().hide();
 
         title = findViewById(R.id.txtTitle);
         btnOpenSave = findViewById(R.id.btnopenSave);
@@ -59,10 +50,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 String displayText = "";
                 File internalStorage = new File(getFilesDir().getAbsolutePath());
                 File [] files = internalStorage.listFiles();
-                for (File allFiles: files) {
-                    if(allFiles.getName().endsWith(".ser"))
-                    displayText+= "       " + allFiles.getName() + "\n";
-                }
+                for (File allFiles: files)
+                    if (allFiles.getName().endsWith(".ser"))
+                        displayText += "       " + allFiles.getName() + "\n";
                 AlertDialog.Builder builder = new AlertDialog.Builder(v.getContext());
                 builder.setTitle("Saves:");
                 final TextView names = new TextView(v.getContext());
@@ -137,4 +127,5 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         });
         builder.show();
     }
+
 }

@@ -22,8 +22,6 @@ public class Topic_RecyclerViewAdapter extends RecyclerView.Adapter<Topic_Recycl
     Context context;
     ArrayList<Question> questions;
 
-
-
     public Topic_RecyclerViewAdapter(Context context, ArrayList<Question> questions, TRecyclerViewInterface recyclerViewInterface){
         this.context = context;
         this.questions = questions;
@@ -61,7 +59,7 @@ public class Topic_RecyclerViewAdapter extends RecyclerView.Adapter<Topic_Recycl
     public final class MyViewHolder extends RecyclerView.ViewHolder {
         TextView textView, questionSymbol;
         EditText input;
-        Button checkAnswer, getAnswer;
+        Button checkAnswer, getAnswer, clearAnswer;
         ImageView checkMark;
 
         ConstraintLayout constraintLayout;
@@ -78,6 +76,7 @@ public class Topic_RecyclerViewAdapter extends RecyclerView.Adapter<Topic_Recycl
 
             checkAnswer = itemView.findViewById(R.id.chkBtn);
             getAnswer = itemView.findViewById(R.id.ansBtn);
+            clearAnswer = itemView.findViewById(R.id.clearBtn);
 
             checkMark = itemView.findViewById(R.id.checkMark);
 
@@ -125,6 +124,16 @@ public class Topic_RecyclerViewAdapter extends RecyclerView.Adapter<Topic_Recycl
                 @Override
                 public void onClick(View v) {
                     input.setText(questions.get(getAdapterPosition()).getAnswer());
+                }
+            });
+
+            clearAnswer.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    int pos = getAdapterPosition();
+                    questions.get(pos).setAttempt("");
+                    questions.get(pos).check();
+                    notifyItemChanged(pos);
                 }
             });
 

@@ -47,6 +47,21 @@
                 tools:layout_editor_absoluteX="196dp"
                 tools:layout_editor_absoluteY="40dp" />
 
+            <Button
+                android:id="@+id/clearBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/editAnswer"
+                android:layout_marginStart="0dp"
+                android:layout_marginEnd="60dp"
+                android:layout_marginBottom="0dp"
+                android:layout_toStartOf="@+id/ansBtn"
+                android:layout_toEndOf="@+id/chkBtn"
+                android:background="@android:color/transparent"
+                android:text="CLEAR"
+                tools:layout_editor_absoluteX="196dp"
+                tools:layout_editor_absoluteY="40dp" />
+
             <EditText
                 android:id="@+id/editAnswer"
                 android:maxWidth="24sp"
@@ -56,7 +71,6 @@
                 android:ems="10"
                 android:hint="Answer"
                 android:textColor="@color/white"
-
                 android:textSize="24sp"
 
                 android:inputType="textPersonName"

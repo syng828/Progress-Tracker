@@ -140,14 +140,26 @@ public class StartActivity extends AppCompatActivity implements RecyclerViewInte
         activityLauncher.launch(intent);
    }
 
+    public void onLongItemClick(int position) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Do you want to remove " + subjects.get(position).getName()+ "?" );
+        builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                subjects.remove(position);
+                adapter.notifyItemRemoved(position);
+            }
+        });
+        builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+            }
+        });
+        builder.show();
+    }
 
-   @Override              //Remove subject
-   public void onLongItemClick(final int position) {
-        subjects.remove(position);
-        adapter.notifyItemRemoved(position);
-   }
-
-   @Override
+    @Override
     public boolean onOptionsItemSelected(MenuItem item) { //goes back to prev activity (MainActivity)
         switch(item.getItemId()) {
             case android.R.id.home:
@@ -157,4 +169,5 @@ public class StartActivity extends AppCompatActivity implements RecyclerViewInte
                 return super.onOptionsItemSelected(item);
         }
    }
+
 }
