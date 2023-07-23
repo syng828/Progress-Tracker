@@ -1,9 +1,11 @@
 # Progress-Tracker
-Android app that allows you to select files and create subjects, topics, and questions. There is a progress bar for each topic that allows you to check your progress depending on how many questions you answered correctly. 
+This android app allows you to easily track your progress in school among various subjects. Customize your own subjects, seperate them into topics, and put in some questions all on your own! 
 
-Java concepts include OOP concepts (classes, interfaces) and serialization of files. 
-Android concepts include RecyclerView among other UI concepts. 
+Technical concepts: 
+- Java: Used to store information into classes. 
+- Android Studio: Used to make UI (includes concepts such as RecyclerView)
 
 This was built upon my previous repository, progressChecker made only in Java. This project was made to gain a better understanding about how objects interact with user input. 
 
 Completed: March 28, 2023. 
+Updated: July 22, 2023. 
