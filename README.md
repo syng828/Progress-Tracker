@@ -10,4 +10,4 @@ This was built upon my previous repository, progressChecker made only in Java. T
 Completed: March 28, 2023. 
 Updated: July 22, 2023. 
 
-[![Watch the video](https://www.youtube.com/watch?v=tc0QaU4I5F0/maxresdefault.jpg)](https://www.youtube.com/watch?v=tc0QaU4I5F0)
+[![Demo]](https://www.youtube.com/watch?v=tc0QaU4I5F0)
