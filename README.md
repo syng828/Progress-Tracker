@@ -10,4 +10,5 @@ This was built upon my previous repository, progressChecker made only in Java. T
 Completed: March 28, 2023. 
 Updated: July 22, 2023. 
 
+Download the app in releases with an Android device to test it out yourself!
 [Demo](https://www.youtube.com/watch?v=tc0QaU4I5F0)
