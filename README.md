@@ -7,8 +7,8 @@ Technical concepts:
 
 This was built upon my previous repository, progressChecker made only in Java. This project was made to gain a better understanding about how objects interact with user input. 
 
-Completed: April 2, 2023. 
-Updated: July 22, 2023. 
+Completed: April 2023. 
+Updated: July 2023. 
 
 Download the app in releases with an Android device to test it out yourself!
 [Demo](https://www.youtube.com/watch?v=tc0QaU4I5F0)
