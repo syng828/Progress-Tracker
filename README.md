@@ -5,9 +5,9 @@ Technical concepts:
 - Java: Used to store information into classes. 
 - Android Studio: Used to make UI (includes concepts such as RecyclerView)
 
-This was built upon my previous repository, progressChecker made only in Java. This project was made to gain a better understanding about how objects interact with user input. 
+This was built upon my previous repository, progressChecker made only in Java, which was created back in February. This project was made to gain a better understanding about how objects interact with user input. 
 
-Completed: April 2023. 
+Completed: March 28, 2023. 
 Updated: July 2023. 
 
 Download the app in releases with an Android device to test it out yourself!
